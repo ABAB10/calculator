@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculatrice</title>
+    <link rel="stylesheet" href="calculator.css">
+    <link rel="stylesheet" href="calculator.js">
+</head>
+<body>
+    <div class="calculator">
+        <h2>Calculatrice</h2>
+        <form id="calcForm" onsubmit="return false;">
+            <input type="number" id="num1" placeholder="Premier nombre" required step="any"><br>
+            <input type="number" id="num2" placeholder="Deuxième nombre" required step="any"><br>
+            <select id="operation">
+                <option value="add">Addition (+)</option>
+                <option value="subtract">Soustraction (-)</option>
+                <option value="divide">Division (/)</option>
+                <option value="power">Puissance (a²)</option>
+            </select><br>
+            <button type="button">Calculer</button>
+        </form>
+        <div class="result" id="result"></div>
+    </div>
+    
+</body>
+</html>
