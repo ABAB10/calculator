@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Calculatrice</title>
-    <link rel="stylesheet" href="calculator.css">
     <link rel="stylesheet" href="calculator.js">
+    <link rel="stylesheet" href="calculator.css">
 </head>
 <body>
     <div class="calculator">
@@ -18,10 +18,50 @@
                 <option value="divide">Division (/)</option>
                 <option value="power">Puissance (a²)</option>
             </select><br>
-            <button type="button">Calculer</button>
+            <button type="button" onclick="calculer()">Calculer</button>
+            <button class="calculator__key" onclick="reset()">AC</button>
         </form>
         <div class="result" id="result"></div>
     </div>
-    
+    <script>
+        function calculer() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            const operation = document.getElementById('operation').value;
+            let resultat;
+
+            switch(operation) {
+                case 'add':
+                    resultat = num1 + num2;
+                    break;
+                case 'subtract':
+                    resultat = num1 - num2;
+                    break;
+                case 'multiply' :
+                    resultat = num1 * num2;
+                    break
+                case 'divide':
+                    if (num2 === 0) {
+                        document.getElementById('result').textContent = "Erreur : division par zéro !";
+                        return;
+                    }
+                    resultat = num1 / num2;
+                    break;
+                case 'power':
+                    resultat = num1 * num1;
+                    break;
+                default:
+                    resultat = "Opération inconnue";
+            }
+
+            document.getElementById('result').textContent = "Résultat : " + resultat;
+        }
+        function reset(){
+        document.getElementById('num1').value = '';
+        document.getElementById('num2').value = '';
+        document.getElementById('operation').selectedIndex = 0;
+        document.getElementById('result').textContent = '';
+        }
+    </script>
 </body>
 </html>
