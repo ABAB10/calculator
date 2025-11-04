@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculatrice</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="calculator">
+    <h2>🧮 Calculatrice</h2>
+    <div id="result" class="result">Entrez vos nombres 👇</div>
+
+    <div class="inputs">
+      <input type="number" id="num1" placeholder="Premier nombre" required>
+      <input type="number" id="num2" placeholder="Deuxième nombre" required>
+    </div>
+
+    <select id="operation">
+      <option value="add">Addition (+)</option>
+      <option value="subtract">Soustraction (-)</option>
+      <option value="multiply">Multiplication (×)</option>
+      <option value="power">Puissance (^)</option>
+    </select>
+
+    <div class="buttons">
+      <button id="calcBtn">Calculer</button>
+      <button id="resetBtn" class="reset">AC</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
