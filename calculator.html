@@ -2,65 +2,60 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Calculatrice</title>
-    <link rel="stylesheet" href="calculator.js">
+    <title>Calculator</title>
     <link rel="stylesheet" href="calculator.css">
 </head>
 <body>
     <div class="calculator">
         <h2>Calculatrice</h2>
         <form id="calcForm" onsubmit="return false;">
-            <input type="number" id="num1" placeholder="Premier nombre" required step="any"><br>
-            <input type="number" id="num2" placeholder="Deuxième nombre" required step="any"><br>
+            <div class="result" id="result"></div>
+            <input type="number" id="num1" placeholder="Premier nombre" required><br>
+            <input type="number" id="num2" placeholder="Deuxième nombre" required><br>
             <select id="operation">
                 <option value="add">Addition (+)</option>
                 <option value="subtract">Soustraction (-)</option>
-                <option value="divide">Division (/)</option>
-                <option value="power">Puissance (a²)</option>
+                <option value="multiply">Multiplication (*)</option>
+                <option value="power">Puissance (^)</option>
             </select><br>
             <button type="button" onclick="calculer()">Calculer</button>
-            <button class="calculator__key" onclick="reset()">AC</button>
+            <button type="button" class="reset" onclick="resetCalc()">AC</button>
         </form>
-        <div class="result" id="result"></div>
+
     </div>
+
     <script>
         function calculer() {
             const num1 = parseFloat(document.getElementById('num1').value);
             const num2 = parseFloat(document.getElementById('num2').value);
             const operation = document.getElementById('operation').value;
-            let resultat;
+            let result;
 
-            switch(operation) {
+            switch (operation) {
                 case 'add':
-                    resultat = num1 + num2;
+                    result = num1 + num2;
                     break;
                 case 'subtract':
-                    resultat = num1 - num2;
+                    result = num1 - num2;
                     break;
-                case 'multiply' :
-                    resultat = num1 * num2;
-                    break
-                case 'divide':
-                    if (num2 === 0) {
-                        document.getElementById('result').textContent = "Erreur : division par zéro !";
-                        return;
-                    }
-                    resultat = num1 / num2;
+                case 'multiply':
+                    result = num1 * num2;
                     break;
                 case 'power':
-                    resultat = num1 * num1;
+                    result = num1 ** num2;
                     break;
                 default:
-                    resultat = "Opération inconnue";
+                    result = "Opération inconnue";
             }
 
-            document.getElementById('result').textContent = "Résultat : " + resultat;
+            document.getElementById('result').textContent = "Résultat : " + result;
         }
-        function reset(){
-        document.getElementById('num1').value = '';
-        document.getElementById('num2').value = '';
-        document.getElementById('operation').selectedIndex = 0;
-        document.getElementById('result').textContent = '';
+
+        function resetCalc() {
+            document.getElementById('num1').value = '';
+            document.getElementById('num2').value = '';
+            document.getElementById('operation').selectedIndex = 0;
+            document.getElementById('result').textContent = '';
         }
     </script>
 </body>
