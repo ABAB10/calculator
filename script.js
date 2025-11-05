@@ -1,21 +1,4 @@
-export const operations = {
-  add: (a, b) => a + b,
-  subtract: (a, b) => a - b,
-  multiply: (a, b) => a * b,
-  power: (a, b) => Math.pow(a, b),
-};
-
-export const add = (a,b)=>operations.add(a,b);
-export const subtract = (a,b)=>operations.subtract(a,b);
-export const multiply = (a,b)=>operations.multiply(a,b);
-export const power = (a,b)=>operations.power(a,b);
-
-
-  add: (a, b) => a + b,
-  subtract: (a, b) => a - b,
-  multiply: (a, b) => a * b,
-  power: (a, b) => Math.pow(a, b),
-};
+import { add, subtract, multiply, power } from './math.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const num1 = document.getElementById('num1');
@@ -24,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const resultDiv = document.getElementById('result');
   const calcBtn = document.getElementById('calcBtn');
   const resetBtn = document.getElementById('resetBtn');
+
+  const operations = { add, subtract, multiply, power };
 
   calcBtn.addEventListener('click', () => {
     const a = parseFloat(num1.value);

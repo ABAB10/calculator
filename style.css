@@ -15,7 +15,8 @@ body {
   padding: 2rem;
   border-radius: 20px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  width: 320px;
+  height: 50vh;
+  width: 385px;
   text-align: center;
   transition: all 0.3s ease;
 }
@@ -26,7 +27,7 @@ body {
 
 h2 {
   margin-bottom: 1rem;
-  font-size: 1.6rem;
+  font-size: 2.3rem;
   letter-spacing: 1px;
 }
 
@@ -39,19 +40,19 @@ h2 {
 input, select, button {
   border: none;
   border-radius: 8px;
-  padding: 0.6rem;
+  padding: 1.3rem;
   font-size: 1rem;
 }
 
 input, select {
   width: 100%;
   background: rgba(255,255,255,0.2);
-  color: #fff;
+  color: #000000;
   outline: none;
 }
 
 input::placeholder {
-  color: #eee;
+  color: #ffffff;
 }
 
 select {
@@ -60,11 +61,13 @@ select {
 
 button {
   flex: 1;
+  width: 215px;
   background: #49a09d;
   color: white;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.3s ease;
+
 }
 
 button:hover {
@@ -73,10 +76,11 @@ button:hover {
 
 .reset {
   background: #f44336;
+  width: 160px;
 }
 
 .result {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   margin-bottom: 1rem;
   background: rgba(255,255,255,0.15);
   padding: 0.5rem;
