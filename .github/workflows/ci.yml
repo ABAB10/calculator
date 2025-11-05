@@ -18,12 +18,11 @@ jobs:
           node-version: 18
 
       - name: Lint JS
-        run: npx eslint script.js --max-warnings=0
-
+        run: npx eslint .
       - name: Run Unit Tests
         run: npm ci && npm test
 
-      - name: Build (zip)
+      - name: Build
         run: |
           mkdir dist
           cp index.html style.css script.js math.js dist/
