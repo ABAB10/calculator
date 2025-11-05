@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const op = operation.value;
 
     if (isNaN(a) || isNaN(b)) {
-      resultDiv.textContent = '⚠️ Entrez deux nombres valides !';
+      resultDiv.textContent = 'Entrez deux nombres valides !';
       return;
     }
 
