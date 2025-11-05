@@ -4,37 +4,30 @@ on:
   push:
     branches: [ main ]
   workflow_dispatch:
+    - name: Checkout
+      uses: actions/checkout@v4
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
+    - name: Lint JS
+      run: npx eslint .
+    - name: Run Unit Tests
+      run: npm test
 
-      - name: Lint JS
-        run: npx eslint .
-      - name: Run Unit Tests
-        run: npm ci && npm test
+    - name: Build
+      run: |
+        mkdir -p dist
+        cp index.html style.css script.js math.js dist/
 
-      - name: Build
-        run: |
-          mkdir dist
-          cp index.html style.css script.js math.js dist/
-          zip -r dist.zip dist
-
-      - name: Deploy via SSH (optionnel)
-        if: ${{ env.SSH_HOST != '' }}
+    - name: Deploy via SSH
+      if: ${{ secrets.SSH_HOST != '' }}
         uses: appleboy/scp-action@v0.1.6
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_KEY }}
           source: "dist/*"
-          target: ${{ secrets.DEPLOY_PATH }}
+          # target: ${{ secrets.DEPLOY_PATH }}
