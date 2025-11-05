@@ -1,4 +1,4 @@
-name: Calculatrice CI/CD
+name: Calculator CI/CD
 
 on:
   push:
@@ -18,15 +18,7 @@ jobs:
           node-version: 18
 
       - name: Lint JS
-        run: npx eslint script.js
-
-      - name: Test (vérifie le fichier JS existe)
-        run: |
-          if [ ! -f "script.js" ]; then
-            echo "script.js introuvable"
-            exit 1
-          fi
-          echo "script.js présent"
+        run: npx eslint script.js --max-warnings=0
 
       - name: Run Unit Tests
         run: npm ci && npm test
@@ -34,11 +26,11 @@ jobs:
       - name: Build (zip)
         run: |
           mkdir dist
-          cp index.html style.css script.js dist/
+          cp index.html style.css script.js math.js dist/
           zip -r dist.zip dist
 
-      - name: Deploy (optionnel SSH)
-        if: ${{ secrets.SSH_HOST }}
+      - name: Deploy via SSH (optionnel)
+        if: ${{ env.SSH_HOST != '' }}
         uses: appleboy/scp-action@v0.1.6
         with:
           host: ${{ secrets.SSH_HOST }}
