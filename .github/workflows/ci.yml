@@ -2,32 +2,33 @@ name: Calculator CI/CD
 
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch:
-    - name: Checkout
+      branches: [ main]
+      workflow_dispatch:
+
+      - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Setup Node.js
+      - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: 18
+      node-version: 18
 
-    - name: Lint JS
+      - name: Lint JS
       run: npx eslint .
-    - name: Run Unit Tests
+      - name: Run Unit Tests
       run: npm test
 
-    - name: Build
+      - name: Build
       run: |
-        mkdir -p dist
-        cp index.html style.css script.js math.js dist/
+      mkdir -p dist
+      cp index.html style.css script.js math.js dist/
 
-    - name: Deploy via SSH
+      - name: Deploy via SSH
       if: ${{ secrets.SSH_HOST != '' }}
-        uses: appleboy/scp-action@v0.1.6
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          source: "dist/*"
-          # target: ${{ secrets.DEPLOY_PATH }}
+      uses: appleboy/scp-action@v0.1.6
+      with:
+      host: ${{ secrets.SSH_HOST }}
+      username: ${{ secrets.SSH_USER }}
+      key: ${{ secrets.SSH_KEY }}
+      source: "dist/*"
+      target: ${{ secrets.DEPLOY_PATH }}
